@@ -1,6 +1,7 @@
+import pprint
 import prims
 import kruskal
-import pprint
+
 
 graph = {'H1' : ['H2','H3','H10'],
          'H2' : ['H1','H3','H10','H5','H8'],
@@ -32,6 +33,7 @@ edge_weight = {('H2', 'H10') : 30,
                ('H6', 'H7') : 80}
 
 print("Prim's :")
-pprint.pprint(prims.prim(graph, edge_weight, 'H1'))
+pprint.pprint(prims.prim(graph, edge_weight, 'H8'))
 print("Kruskal :")
 pprint.pprint(kruskal.kruskal(graph, edge_weight))
+'320'

@@ -24,7 +24,7 @@ def max_subarray(arr, low, high):
     if high == low:
         return (low, high, arr[high])
     else:
-        mid = (low + high)/ 2
+        mid = (low + high)// 2
         left_low, left_high, left_sum = max_subarray(arr, low, mid)
         right_low, right_high, right_sum = max_subarray(arr, mid+1, high)
         cross_low, cross_high, cross_sum = max_crossing_subarray(arr, low, mid, high)

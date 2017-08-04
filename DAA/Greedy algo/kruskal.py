@@ -26,15 +26,13 @@ def kruskal(adj_list, edge_weight):
     edges = []
     count = 0
     min_weight = 0
-    while len(edges) != len(adj_list):
+    while len(edges) != len(adj_list) - 1:
         c = sorted_edge_weight[count]
         u, v = c
-        #print(c)
         count = count + 1
         i = parent[u]
         j = parent[v]
         if i != j:
-            #print(u, v, parent)
             parent[i] = j
             edges.append((u,v))
             min_weight = min_weight + edge_weight[c]

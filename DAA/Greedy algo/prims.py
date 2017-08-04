@@ -7,7 +7,6 @@ def add_edges_to_queue(q, edge_weight, node, neighbour):
             q.put((edge_weight[edge], (node, each)))
         else:
             q.put((edge_weight[each+node], (node, each)))
-    print(q.queue)
 
 def prim(adj_list, edge_weight, start_node=None):
     '''adj_list - adjecency list representaion of a graph
@@ -29,11 +28,14 @@ def prim(adj_list, edge_weight, start_node=None):
     edges = []
     for i in range(1,len(adj_list)):
         weight, (u, v) = q.get()
-        edges.append([weight, (u, v)])
+        while (u,v) in edges or (v,u) in edges:
+            weight, (u,v) = q.get()
+        #print("INSERTe",u,v)
+        edges.append((u, v))
         neigh = adj_list[v]
         #print("NEIGH: ", neigh, u)
-        if u in neigh:
-            neigh.remove(u)
+        #if u in neigh:
+        #    neigh.remove(u)
         add_edges_to_queue(q, edge_weight, v, neigh)
         min_cost = min_cost + weight
     return (min_cost, edges)
