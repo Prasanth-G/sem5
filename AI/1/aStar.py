@@ -55,8 +55,8 @@ def Astar(start, goal):
             if each_neighbour in closed_set:
                 continue
 
-            if each_neighbour not in open_set:	
-                open_set.add(each_neighbour)
+            #if each_neighbour not in open_set:	
+            #    open_set.add(each_neighbour)
 
             tentative_gscore = gscore[current] + dist_between(current, each_neighbour)
             if tentative_gscore < gscore[each_neighbour]:
