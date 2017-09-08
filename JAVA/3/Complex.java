@@ -7,21 +7,21 @@ public class Complex{
         this.imaginary = imaginary;
     }
 
-    void setReal(int real){
+    public void setReal(int real){
         this.real = real;
     }
-    void setImaginary(int imaginary){
+    public void setImaginary(int imaginary){
         this.imaginary = imaginary;
     }
 
-    int getReal(){
+    public int getReal(){
         return this.real;
     }
-    int getImaginary(){
+    public int getImaginary(){
         return this.imaginary;
     }
 
-    Complex add(Complex c){
+    public Complex add(Complex c){
         return new Complex(real + c.real, imaginary + c.imaginary);
     }
 
@@ -33,4 +33,8 @@ public class Complex{
         return new Complex(real * c.real - imaginary * c.imaginary, real * c.imaginary + imaginary * c.real);
     }
 
+    @Override
+    public String toString() {
+        return "" + real + " + i" + imaginary;
+    }
 }

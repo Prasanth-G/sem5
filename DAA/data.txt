@@ -1,0 +1,1 @@
+ Priyanka visisted a kids shop. There are N toys and their weight is represented bya n  array

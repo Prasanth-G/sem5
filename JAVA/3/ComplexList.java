@@ -4,21 +4,34 @@ public class ComplexList{
     private ArrayList<Complex> CList;
 
     ComplexList(int length){
-        this.CList  = new ArrayList(length);
+        this.CList  = new ArrayList<Complex>(length);
+        for(int i = 0; i < length; i++){
+            CList.add(new Complex(0,0));
+        }
     }
 
-    void setElement(int index, Complex element){
+    public void setElement(int index, Complex element){
         CList.add(index, element);
     }
-    Complex getElement(int index){
+    public Complex getElement(int index){
         return CList.get(index);
     }
 
-    Complex calculateTotal(){
+    public Complex calculateTotal(){
         Complex sum = new Complex(0,0);
         for (Complex c : CList){
             sum.add(c);
         }
         return sum;
+    }
+
+    @Override
+    public String toString() {
+        String s = "[ ";
+        for (Complex each : CList){
+            s = s + each + ",\n";
+        }
+        s = s + "]";
+        return s;
     }
 }

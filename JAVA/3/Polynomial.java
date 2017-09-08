@@ -6,26 +6,31 @@ class Polynomial{
         this.c = c;
     }
 
-    void setA(int a){
+    public void setA(int a){
         this.a = a;
     }
-    void setB(int b){
+    public void setB(int b){
         this.b = b;
     }
-    void setC(int c){
+    public void setC(int c){
         this.c = c;
     }
-    int getA(){
+    public int getA(){
         return this.a;
     }
-    int getB(){
+    public int getB(){
         return this.b;
     }
-    int getC(){
+    public int getC(){
         return this.c;
     }
 
     Polynomial add(Polynomial p){
-        return Polynomial(a + p.a, b + p.b, c + p.c);
+        return new Polynomial(a + p.a, b + p.b, c + p.c);
+    }
+
+    @Override
+    public String toString() {
+        return ""+a+"X^2 + " + b + "X + " + c ;
     }
 }
