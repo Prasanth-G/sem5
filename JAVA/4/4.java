@@ -1,35 +1,35 @@
-class CommonData {
-	int[] arr;
-	int i, j, n;
-	boolean semaphore = false;
-	public CommonData(int n){
-		this.arr = new int[n];
-		this.i = 0;
-		this.j = 0;
-		this.n = n;
+class Queue {
+	int[] array;
+	int head, tail, size;
+
+	public Queue(int size){
+		this.array = new int[size];
+		this.head = 0;
+		this.tail = 0;
+		this.size = size;
 	}
-	synchronized void enqueue(int a) {
-		if (i == (j+1)%n){
+	synchronized void enqueue(int data) {
+		if (head == (tail + 1) % size){
 			try {
 				wait();
 			}
 			catch(InterruptedException e1) {}
 		}
-		arr[j] = a;
-		j++;
-		j = j % n;
+		array[tail] = data;
+		tail++;
+		tail %= size;
 		notify();
 	}
 	synchronized int dequeue() {
-		if (i == j){
+		if (head == tail){
 			try {
 				wait();
 			}
 			catch(InterruptedException e1) {}
 		}
-		int temp = arr[i];
-		i++;
-		i = i % n;
+		int temp = array[head];
+		head++;
+		head %= size;
 		notify();
 		return temp;
 	}
@@ -38,9 +38,8 @@ class CommonData {
 class Worker extends Thread{
 	
 	String name;
-	CommonData input;
-	CommonData output;
-	public Worker(String name, CommonData input, CommonData output) {
+	Queue input, output;
+	public Worker(String name, Queue input, Queue output) {
 		this.name = name;
 		this.input = input;
 		this.output = output;
@@ -58,8 +57,8 @@ class Worker extends Thread{
 
 class Test{
 	public static void main(String[] args){
-		CommonData CD1 = new CommonData(5);
-		CommonData CD2 = new CommonData(5);
+		Queue CD1 = new Queue(5);
+		Queue CD2 = new Queue(5);
 		
 		Worker w1 = new Worker("W1", CD1, CD2);
 		Worker w2 = new Worker("W2", CD2, CD1);
