@@ -22,7 +22,7 @@ class addAndIncrement extends Thread{
     
     @Override
     public void run() {
-		while(true){
+        while(true){
             synchronized(first.value){
                 System.out.println(name + " is holding " + first.name);
                 System.out.println(name + "is waiting for " + second.name);

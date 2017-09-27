@@ -33,8 +33,7 @@ class Thread1 extends Thread{
     
     @Override
     public void run() {
-		while(true){
-
+        while(true){
             //Check resources are available using dekker's algo
             var.wantToEnter[0] = true;
             while (var.wantToEnter[1]){           //While Thread 2 want the resource, i'll check whose turn is this
@@ -60,6 +59,9 @@ class Thread1 extends Thread{
                 }
             }
             //End
+
+            var.turn = 1;
+            var.wantToEnter[0] = false;
         }
     }
 }
@@ -77,8 +79,7 @@ class Thread2 extends Thread{
     
     @Override
     public void run() {
-		while(true){
-
+        while(true){
             //Check resources are available using dekker's algo
             var.wantToEnter[1] = true;
             while (var.wantToEnter[0]){           //While Thread 1 want the resource, i'll check whose turn is this
@@ -104,6 +105,9 @@ class Thread2 extends Thread{
                 }
             }
             //End
+
+            var.turn = 0;
+            var.wantToEnter[1] = false;
         }
     }
 }
