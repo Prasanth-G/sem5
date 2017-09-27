@@ -11,17 +11,17 @@ class Resource{
 }
 
 class addAndIncrement extends Thread{
-	
-	String name;
+    
+    String name;
     Resource first, second;
-	public addAndIncrement(String name, Resource first, Resource second) {
-		this.name = name;
-		this.first = first;
-		this.second = second;
-	}
-	
-	@Override
-	public void run() {
+    public addAndIncrement(String name, Resource first, Resource second) {
+        this.name = name;
+        this.first = first;
+        this.second = second;
+    }
+    
+    @Override
+    public void run() {
 		while(true){
             synchronized(first.value){
                 System.out.println(name + " is holding " + first.name);
@@ -31,10 +31,10 @@ class addAndIncrement extends Thread{
                     System.out.println(first.value + second.value);
                     first.value++;
                     second.value++;
-                }  
+                }
             }
-		}
-	}
+        }
+    }
 }
 
 class Main{
