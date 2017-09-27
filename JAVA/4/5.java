@@ -48,7 +48,7 @@ class Main{
         w1.start();
         try { Thread.sleep(10);}
         catch (InterruptedException e) {}
-		w2.start();
+        w2.start();
 		try{
 			w1.join();
 			w2.join();
