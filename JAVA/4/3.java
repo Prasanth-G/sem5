@@ -26,7 +26,8 @@ class CommonData {
 		return x;
 	}
 }
-
+/**Worker class will do both Read (from it's input)and Write (to it's output)
+ */
 class Worker extends Thread{
 	
 	String name;
@@ -48,7 +49,7 @@ class Worker extends Thread{
 	}
 }
 
-class Test{
+class Main{
 	public static void main(String[] args){
 		CommonData CD1 = new CommonData();
 		CommonData CD2 = new CommonData();

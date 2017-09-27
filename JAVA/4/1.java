@@ -1,3 +1,6 @@
+/**
+ * Using CommonData class we can access data(int) concurrently from threads without losing data
+*/
 class CommonData {
 	int data;
 	boolean semaphore = false;
@@ -27,6 +30,9 @@ class CommonData {
 	}
 }
 
+/**
+ * Producer - Produces integer in the range 0 - 10 and try to store in it's CommonData
+ */
 class Producer extends Thread{
 	
 	CommonData data;
@@ -42,6 +48,9 @@ class Producer extends Thread{
 	}
 }
 
+/**
+ * Consumer - Consumes integer values from it's CommonData (11 times)
+ */
 class Consumer extends Thread {
 	
 	CommonData data;
@@ -56,7 +65,7 @@ class Consumer extends Thread {
 	}
 }
 
-class Test{
+class Main{
 	public static void main(String[] args){
 		CommonData CD = new CommonData();
 		Producer p = new Producer(CD);

@@ -1,3 +1,7 @@
+/**
+ * Queue class helps us to send signals between threads
+ * Advantage of using Queue: speed of consumer doesn't affect speed of Producer upto certain level
+ */
 class Queue {
 	int[] array;
 	int head, tail, size;
@@ -64,7 +68,7 @@ class Consumer extends Thread {
 	}
 }
 
-class Test{
+class Main{
 	public static void main(String[] args){
 		Queue CD = new Queue(5);
 		Producer p = new Producer(CD);
