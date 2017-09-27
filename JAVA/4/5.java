@@ -49,12 +49,12 @@ class Main{
         try { Thread.sleep(10);}
         catch (InterruptedException e) {}
         w2.start();
-		try{
-			w1.join();
-			w2.join();
-		}catch (InterruptedException e){
-			System.out.println(e);
-		}
-		System.out.println("End");
+        try{
+            w1.join();
+            w2.join();
+        }catch (InterruptedException e){
+            System.out.println(e);
+        }
+        System.out.println("End");
     }
 }
