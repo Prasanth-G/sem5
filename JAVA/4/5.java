@@ -42,9 +42,9 @@ class Main{
         Integer a = 1,b = 2;
         Resource r1 = new Resource("Resource 1", a);
         Resource r2 = new Resource("Resource 2", b);
-		addAndIncrement w1 = new addAndIncrement("W1", r1, r2);
-		addAndIncrement w2 = new addAndIncrement("W2", r2, r1);
-		System.out.println("Start");
+        addAndIncrement w1 = new addAndIncrement("W1", r1, r2);
+        addAndIncrement w2 = new addAndIncrement("W2", r2, r1);
+        System.out.println("Start");
         w1.start();
         try { Thread.sleep(10);}
         catch (InterruptedException e) {}
