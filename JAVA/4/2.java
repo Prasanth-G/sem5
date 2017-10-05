@@ -1,35 +1,39 @@
-class CommonData {
-	int[] arr;
-	int i, j, n;
-	boolean semaphore = false;
-	public CommonData(int n){
-		this.arr = new int[n];
-		this.i = 0;
-		this.j = 0;
-		this.n = n;
+/**
+ * Queue class helps us to send signals between threads
+ * Advantage of using Queue: speed of consumer doesn't affect speed of Producer upto certain level
+ */
+class Queue {
+	int[] array;
+	int head, tail, size;
+
+	public Queue(int size){
+		this.array = new int[size];
+		this.head = 0;
+		this.tail = 0;
+		this.size = size;
 	}
-	synchronized void enqueue(int a) {
-		if (i == (j+1)%n){
+	synchronized void enqueue(int data) {
+		if (head == (tail + 1) % size){
 			try {
 				wait();
 			}
 			catch(InterruptedException e1) {}
 		}
-		arr[j] = a;
-		j++;
-		j = j % n;
+		array[tail] = data;
+		tail++;
+		tail %= size;
 		notify();
 	}
 	synchronized int dequeue() {
-		if (i == j){
+		if (head == tail){
 			try {
 				wait();
 			}
 			catch(InterruptedException e1) {}
 		}
-		int temp = arr[i];
-		i++;
-		i = i % n;
+		int temp = array[head];
+		head++;
+		head %= size;
 		notify();
 		return temp;
 	}
@@ -37,36 +41,36 @@ class CommonData {
 
 class Producer extends Thread{
 	
-	CommonData data;
-	public Producer(CommonData data) {
-		this.data = data;
+	Queue queue;
+	public Producer(Queue queue) {
+		this.queue = queue;
 	}
 	
 	@Override
 	public void run() {
 		for(int i=0; i<=10; i++) {
-			data.enqueue(i);
+			queue.enqueue(i);
 		}
 	}
 }
 
 class Consumer extends Thread {
 	
-	CommonData data;
-	public Consumer(CommonData data) {
-		this.data = data;
+	Queue queue;
+	public Consumer(Queue queue) {
+		this.queue = queue;
 	}
 	@Override
 	public void run() {
 		for(int j=0; j<=10; j++) {
-			System.out.println(data.dequeue());
+			System.out.println(queue.dequeue());
 		}
 	}
 }
 
-class Test{
+class Main{
 	public static void main(String[] args){
-		CommonData CD = new CommonData(5);
+		Queue CD = new Queue(5);
 		Producer p = new Producer(CD);
 		Consumer c = new Consumer(CD);
 		System.out.println("Start");
